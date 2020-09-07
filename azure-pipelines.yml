@@ -37,4 +37,4 @@ steps:
   inputs:
     azureSubscription: 'cuifengchao-git'
     appName: 'cuifcApp'
-    package: $(System.DefaultWorkingDirectory)/**/*.zip   
+    package: $(System.DefaultWorkingDirectory)/**/*.zip
