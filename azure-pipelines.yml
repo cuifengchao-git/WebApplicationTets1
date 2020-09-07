@@ -37,7 +37,7 @@ steps:
   inputs:
     appType: 'webApp'
     azureSubscription: 'cuifcRM'
-    appName: 'WebApplicationTets1'
+    appName: 'cuifengchao-git.WebApplicationTets1'
     package: $(System.DefaultWorkingDirectory)/**/*.zip
 
 - task: AzureRmWebAppDeployment@4
