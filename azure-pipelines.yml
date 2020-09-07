@@ -36,7 +36,7 @@ steps:
 - task: AzureWebApp@1
   inputs:
     appType: 'webApp'
-    azureSubscription: 'cuifengchao-git'
+    azureSubscription: 'cuifcRM'
     appName: 'cuifengchao-git.WebApplicationTets1'
     package: $(System.DefaultWorkingDirectory)/**/*.zip
 
