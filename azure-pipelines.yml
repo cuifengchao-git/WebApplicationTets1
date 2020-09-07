@@ -37,5 +37,9 @@ steps:
   inputs:
     appType: 'webApp'
     azureSubscription: 'cuifcRM'
-    appName: 'cuifcApp'
+    appName: 'WebApplicationTets1'
     package: $(System.DefaultWorkingDirectory)/**/*.zip
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    VirtualApplication: 'cuifcApp'
