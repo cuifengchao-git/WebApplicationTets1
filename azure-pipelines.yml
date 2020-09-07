@@ -36,6 +36,6 @@ steps:
 - task: AzureWebApp@1
   inputs:
     appType: 'webApp'
-    azureSubscription: 'cuifengchao-git'
+    azureSubscription: 'cuifcCloud'
     appName: 'cuifcApp'
     package: $(System.DefaultWorkingDirectory)/**/*.zip
