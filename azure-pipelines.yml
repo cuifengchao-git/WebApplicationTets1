@@ -75,4 +75,4 @@ steps:
     appType: webApp
     azureSubscription: 'cuifcRM'
     appName: 'cuifcApp'
-    package: $(Build.ArtifactStagingDirectory)/**/*.zip 
+    package: $(Build.ArtifactStagingDirectory)/*.zip 
