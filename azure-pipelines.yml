@@ -67,7 +67,7 @@ steps:
   inputs:
     command: publish
     publishWebProjects: True
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) '
     zipAfterPublish: True
 
 - task: AzureWebApp@1
@@ -75,4 +75,4 @@ steps:
     appType: webApp
     azureSubscription: 'cuifcRM'
     appName: 'cuifcApp'
-    package: $(System.DefaultWorkingDirectory)/**/*.zip 
+    package: $(Build.ArtifactStagingDirectory)/**/*.zip 
