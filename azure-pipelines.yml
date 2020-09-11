@@ -55,19 +55,19 @@ steps:
     artifactName: 'myWebsiteName'
 
 
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)'
-    includeRootFolder: true
-    archiveType: 'zip'
-    archiveFile: '$(BuildConfiguration)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
+#- task: ArchiveFiles@2
+#  inputs:
+#    rootFolderOrFile: '$(Build.BinariesDirectory)'
+#    includeRootFolder: true
+#    archiveType: 'zip'
+#    archiveFile: '$(BuildConfiguration)/$(Build.BuildId).zip'
+#    replaceExistingArchive: true
 
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'cuifcRM'
     appType: 'webApp'
     appName: 'cuifcApp'
-    package: '$(BuildConfiguration)/$(Build.BuildId).zip'
+    package: '$(Build.ArtifactStagingDirectory)/*.zip'
     deploymentMethod: 'zipDeploy'
 
