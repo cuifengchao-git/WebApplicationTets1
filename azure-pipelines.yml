@@ -75,4 +75,4 @@ steps:
     appType: webApp
     azureSubscription: 'cuifcRM'
     appName: 'cuifcApp'
-    package: D:\a\1\a\*.zip
+    package: D:\a\1\a\WebApp.zip
