@@ -60,7 +60,7 @@ steps:
     rootFolderOrFile: '$(Build.BinariesDirectory)'
     includeRootFolder: true
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    archiveFile: '$(BuildConfiguration)/$(Build.BuildId).zip'
     replaceExistingArchive: true
 
 - task: AzureWebApp@1
@@ -68,6 +68,6 @@ steps:
     azureSubscription: 'cuifcRM'
     appType: 'webApp'
     appName: 'cuifcApp'
-    package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    package: '$(BuildConfiguration)/$(Build.BuildId).zip'
     deploymentMethod: 'zipDeploy'
 
