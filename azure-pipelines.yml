@@ -70,9 +70,11 @@ steps:
     arguments: '--configuration $(BuildConfiguration) --output $(build.artifactStagingDirectory)'
     zipAfterPublish: True
 
-- task: IISWebAppDeploymentOnMachineGroup@0
+- task: AzureWebApp@1
+  displayName: Azure Web App Deploy
   inputs:
-    webSiteName: 'WebTest'
-    VirtualApplication: cuifcApp
-    package: '$(System.DefaultWorkingDirectory)\WebApp.zip'
+    appType: webApp
+    azureSubscription: $(azureSubscription)
+    appName: samplewebapp
+    package: $(System.DefaultWorkingDirectory)/*.zip
 
