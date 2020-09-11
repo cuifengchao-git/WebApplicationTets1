@@ -70,4 +70,3 @@ steps:
     appName: 'cuifcApp'
     package: '$(Build.ArtifactStagingDirectory)/*.zip'
     deploymentMethod: 'zipDeploy'
-
