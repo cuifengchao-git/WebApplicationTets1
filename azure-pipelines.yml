@@ -63,18 +63,24 @@ steps:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
     artifactName: 'myWebsiteName'
 
-- task: DotNetCoreCLI@2
+##- task: DotNetCoreCLI@2
+##  inputs:
+##    command: publish
+##    publishWebProjects: True
+##    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactStagingDirectory)'
+##    zipAfterPublish: True
+- task: ArchiveFiles@2
   inputs:
-    command: publish
-    publishWebProjects: True
-    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactStagingDirectory)'
-    zipAfterPublish: True
-
+    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
 - task: AzureWebApp@1
-  displayName: Azure Web App Deploy
   inputs:
-    appType: webApp
-    azureSubscription: cuifcRM
-    appName: cuifcApp
-    package: $(System.DefaultWorkingDirectory)/WebApp.zip
+    azureSubscription: 'cuifcRM'
+    appType: 'webApp'
+    appName: 'cuifcApp'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    deploymentMethod: 'zipDeploy'
 
