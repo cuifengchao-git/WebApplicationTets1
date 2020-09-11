@@ -33,11 +33,6 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    projects: '** / *csproj'
-
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(Build.BinariesDirectory)'
@@ -51,6 +46,6 @@ steps:
     azureSubscription: 'cuifcRM'
     appType: 'webApp'
     appName: 'cuifcApp'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     deploymentMethod: 'auto'
 
