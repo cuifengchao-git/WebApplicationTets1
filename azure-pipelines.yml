@@ -33,42 +33,11 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-#构建项目
-- task: DotNetCoreCLI@2
-  displayName: Build
-  inputs:
-    command: build
-    projects: '**/*.csproj'
-    arguments: '--configuration $(buildConfiguration)' # Update this to match your need
-
-#测试项目
 - task: DotNetCoreCLI@2
   inputs:
-    command: test
-    projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+    command: 'build'
+    projects: '** / *csproj'
 
-#工程发布到Azure Pipelines
-- task: DotNetCoreCLI@2
-  inputs:
-    command: publish
-    publishWebProjects: True
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    zipAfterPublish: True
-
-#
-# this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'myWebsiteName'
-
-##- task: DotNetCoreCLI@2
-##  inputs:
-##    command: publish
-##    publishWebProjects: True
-##    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactStagingDirectory)'
-##    zipAfterPublish: True
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(Build.BinariesDirectory)'
@@ -76,11 +45,12 @@ steps:
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
+
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'cuifcRM'
     appType: 'webApp'
     appName: 'cuifcApp'
-    package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    deploymentMethod: 'zipDeploy'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'
 
