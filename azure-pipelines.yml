@@ -74,7 +74,7 @@ steps:
   displayName: Azure Web App Deploy
   inputs:
     appType: webApp
-    azureSubscription: $(azureSubscription)
-    appName: samplewebapp
+    azureSubscription: cuifcRM
+    appName: cuifcApp
     package: $(System.DefaultWorkingDirectory)/*.zip
 
